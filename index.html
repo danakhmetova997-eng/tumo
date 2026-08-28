@@ -231,6 +231,9 @@
     font-weight:700;
     color:var(--black);
   }
+  .fact-value.name{
+    font-family:'Nunito',sans-serif;
+  }
   .note{
     background:var(--purple-tint);
     border-radius:10px;
@@ -620,7 +623,7 @@
           </div>
           <div>
             <div class="fact-label">${t('factCoach')}</div>
-            <div class="fact-value">${r.c || t('badgeUnknown')}</div>
+            <div class="fact-value name">${r.c || t('badgeUnknown')}</div>
           </div>
           <div>
             <div class="fact-label">${t('factCoachEmail')}</div>
