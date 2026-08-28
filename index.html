@@ -41,7 +41,7 @@
 
   /* ---------- header ---------- */
   .topbar{
-    background:var(--black);
+    background:#000000;
     padding:16px clamp(16px,4vw,48px);
     display:flex;
     align-items:center;
@@ -60,7 +60,7 @@
     white-space:nowrap;
   }
   .logo-img{
-    height:26px;
+    height:34px;
     width:auto;
     display:block;
   }
@@ -459,6 +459,7 @@
       noResults:'Ничего не найдено — проверьте написание или напишите нам ниже.',
       multiMatch:(n)=>`Найдено несколько учеников с этим именем (${n}) — выберите нужного по дню и времени занятий.`,
       searchBtn:'Найти',
+      searchPlaceholder:'Фамилия Имя',
       factDay:'день', factTime:'время', factCoach:'коуч', factCoachEmail:'email коуча', factStage:'этап обучения',
       emailTbd:'уточняется',
       badgeChanged:'новый коуч', badgeSame:'коуч без изменений', badgeUnknown:'уточняется',
@@ -499,6 +500,7 @@
       noResults:'Ештеңе табылмады — жазылуын тексеріңіз немесе төменде бізге жазыңыз.',
       multiMatch:(n)=>`Осы атпен бірнеше оқушы табылды (${n}) — күні мен уақыты бойынша керегін таңдаңыз.`,
       searchBtn:'Табу',
+      searchPlaceholder:'Тегі Аты',
       factDay:'күні', factTime:'уақыты', factCoach:'коуч', factCoachEmail:'коучтың email-і', factStage:'оқу кезеңі',
       emailTbd:'нақтыланады',
       badgeChanged:'жаңа коуч', badgeSame:'коуч өзгермеді', badgeUnknown:'нақтыланады',
@@ -690,6 +692,7 @@
     document.getElementById('langRu').classList.toggle('active', lang==='ru');
     document.getElementById('langKz').classList.toggle('active', lang==='kz');
     applyStaticI18n();
+    input.placeholder = t('searchPlaceholder');
     renderFaq();
     updateWaLink();
     renderContactList();
