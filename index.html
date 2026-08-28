@@ -77,9 +77,6 @@
     font-size:12.5px;
     letter-spacing:.03em;
     text-transform:uppercase;
-    border:1.5px solid var(--purple);
-    border-radius:999px;
-    padding:6px 13px;
     white-space:nowrap;
   }
   .lang-switch{
@@ -131,6 +128,7 @@
     font-size:clamp(22px,4vw,32px);
     white-space:nowrap;
     color:var(--purple-deep);
+    min-width:0;
   }
   .lede{
     color:var(--text);
@@ -188,6 +186,8 @@
   @media (max-width:480px){
     .search-row{flex-direction:column;}
     .btn-search{padding:14px;}
+    .divider-heading h1,
+    .divider-heading h2{white-space:normal;}
   }
 
   /* ---------- result cards ---------- */
@@ -319,6 +319,7 @@
     color:#cfcfcf;
     font-size:14.5px;
     margin:0 0 16px;
+    white-space:pre-line;
   }
   .contact-list{
     margin-top:20px;
@@ -393,13 +394,14 @@
     <div id="results" class="results"></div>
 
     <div class="faq">
-      <div class="divider-heading"><h2 data-i18n="faqTitle">частые вопросы о TUMO</h2></div>
+      <div class="divider-heading"><h2 data-i18n="faqTitle">Частые вопросы о TUMO</h2></div>
       <div id="faqList"></div>
     </div>
 
     <div class="contact-block">
       <h2 data-i18n="contactTitle">В случае возникновения вопросов или необходимости уточнения статуса заявки</h2>
-      <p data-i18n="contactText">Если информация о расписании отсутствует или требует уточнения, свяжитесь с нами. Для идентификации учащегося в системе укажите его полные ФИО.</p>
+      <p data-i18n="contactText">Если информация о расписании отсутствует или требует уточнения, свяжитесь с нами.
+Для идентификации учащегося в системе укажите его полные ФИО.</p>
       <a id="waBtn" class="btn" style="background:transparent;border-color:var(--purple);color:var(--purple);border-width:2px;border-style:solid;" href="#" target="_blank" rel="noopener" data-i18n="contactBtn">написать в WhatsApp</a>
       <div class="contact-list" id="contactList"></div>
     </div>
@@ -469,7 +471,7 @@
       noteWorkshop:'Если ученик записан на предстоящий воркшоп, необходимо проверить электронную почту и найти письмо с приглашением, содержащим всю необходимую информацию.',
       faqTitle:'Частые вопросы о TUMO',
       contactTitle:'В случае возникновения вопросов или необходимости уточнения статуса заявки',
-      contactText:'Если информация о расписании отсутствует или требует уточнения, свяжитесь с нами. Для идентификации учащегося в системе укажите его полные ФИО.',
+      contactText:'Если информация о расписании отсутствует или требует уточнения, свяжитесь с нами.\nДля идентификации учащегося в системе укажите его полные ФИО.',
       contactBtn:'написать в WhatsApp',
       waText:'Здравствуйте! Не нашёл(ла) расписание ребёнка на сайте. ФИО ученика: ',
       footer:'TUMO Astana · страница обновляется администрацией центра',
@@ -511,7 +513,7 @@
       noteWorkshop:'Егер оқушы алдағы воркшопқа жазылған болса, электрондық поштаны тексеріп, барлық қажетті ақпараты бар шақыру хатын табу қажет.',
       faqTitle:'TUMO туралы жиі қойылатын сұрақтар',
       contactTitle:'Егер сұрақтарыңыз болса немесе өтінім мәртебесін нақтылау қажет болса',
-      contactText:'Кесте туралы ақпарат жоқ болса немесе нақтылауды қажет етсе, бізбен байланысыңыз. Жүйеде оқушыны анықтау үшін оның толық аты-жөнін көрсетіңіз.',
+      contactText:'Кесте туралы ақпарат жоқ болса немесе нақтылауды қажет етсе, бізбен байланысыңыз.\nЖүйеде оқушыны анықтау үшін оның толық аты-жөнін көрсетіңіз.',
       contactBtn:'WhatsApp-қа жазу',
       waText:'Сәлеметсіз бе! Баланың кестесін сайттан таба алмадым. Оқушының аты-жөні: ',
       footer:'TUMO Astana · бетті орталық әкімшілігі жаңартып отырады',
