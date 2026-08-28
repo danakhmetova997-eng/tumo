@@ -178,8 +178,15 @@
   @media (max-width:480px){
     .search-row{flex-direction:column;}
     .btn-search{padding:14px;}
+    .divider-heading{flex-direction:column;gap:8px;}
+    .divider-heading::before,
+    .divider-heading::after{display:none;}
     .divider-heading h1,
-    .divider-heading h2{white-space:normal;}
+    .divider-heading h2{
+      white-space:normal;
+      text-align:center;
+      line-height:1.2;
+    }
   }
 
   /* ---------- result cards ---------- */
