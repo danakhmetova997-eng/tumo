@@ -248,6 +248,7 @@
     margin-top:8px;
   }
   .note.warn{background:#fbeee0;color:#7a4f1c;}
+  .note.info{background:#eaf1fb;color:#2c4a6e;}
 
   /* ---------- FAQ ---------- */
   .faq{margin-top:56px;}
@@ -460,12 +461,13 @@
       multiMatch:(n)=>`Найдено несколько учеников с этим именем (${n}) — выберите нужного по дню и времени занятий.`,
       searchBtn:'Найти',
       searchPlaceholder:'Фамилия Имя',
-      factDay:'день', factTime:'время', factCoach:'коуч', factCoachEmail:'email коуча', factStage:'этап обучения',
+      factSchedule:'график обучения', factMainDay:'основной день самообучения', factCoach:'коуч', factCoachEmail:'email коуча', factStage:'этап обучения',
       emailTbd:'уточняется',
       badgeChanged:'новый коуч', badgeSame:'коуч без изменений', badgeUnknown:'уточняется',
       noteChanged:'Коуч изменился: занятия продолжит новый коуч, прогресс и программа ученика сохраняются.',
       noteSame:'Коуч остался прежним — меняется только день/время занятия.',
       noteWarn:'Коуч по этой группе ещё уточняется — сообщим дополнительно.',
+      noteWorkshop:'Если ученик записан на предстоящий воркшоп, необходимо проверить электронную почту и найти письмо с приглашением, содержащим всю необходимую информацию.',
       faqTitle:'Частые вопросы о TUMO',
       contactTitle:'В случае возникновения вопросов или необходимости уточнения статуса заявки',
       contactText:'Если информация о расписании отсутствует или требует уточнения, свяжитесь с нами. Для идентификации учащегося в системе укажите его полные ФИО.',
@@ -501,12 +503,13 @@
       multiMatch:(n)=>`Осы атпен бірнеше оқушы табылды (${n}) — күні мен уақыты бойынша керегін таңдаңыз.`,
       searchBtn:'Табу',
       searchPlaceholder:'Тегі Аты',
-      factDay:'күні', factTime:'уақыты', factCoach:'коуч', factCoachEmail:'коучтың email-і', factStage:'оқу кезеңі',
+      factSchedule:'оқу кестесі', factMainDay:'негізгі өзіндік оқу күні', factCoach:'коуч', factCoachEmail:'коучтың email-і', factStage:'оқу кезеңі',
       emailTbd:'нақтыланады',
       badgeChanged:'жаңа коуч', badgeSame:'коуч өзгермеді', badgeUnknown:'нақтыланады',
       noteChanged:'Коуч ауысты: сабақты жаңа коуч жалғастырады, оқушының прогресі мен бағдарламасы сақталады.',
       noteSame:'Коуч өзгермеді — тек сабақтың күні/уақыты ауысады.',
       noteWarn:'Бұл топтың коучы әлі нақтыланып жатыр — қосымша хабарлаймыз.',
+      noteWorkshop:'Егер оқушы алдағы воркшопқа жазылған болса, электрондық поштаны тексеріп, барлық қажетті ақпараты бар шақыру хатын табу қажет.',
       faqTitle:'TUMO туралы жиі қойылатын сұрақтар',
       contactTitle:'Егер сұрақтарыңыз болса немесе өтінім мәртебесін нақтылау қажет болса',
       contactText:'Кесте туралы ақпарат жоқ болса немесе нақтылауды қажет етсе, бізбен байланысыңыз. Жүйеде оқушыны анықтау үшін оның толық аты-жөнін көрсетіңіз.',
@@ -557,6 +560,16 @@
 
   function trDay(d){ const e = DAY_TR[d]; return e ? e[currentLang] : d; }
   function trStage(s){ const e = STAGE_TR[s]; return e ? e[currentLang] : s; }
+  const DAY_PAIR = {
+    'Понедельник': ['Понедельник','Четверг'],
+    'Четверг': ['Понедельник','Четверг'],
+    'Вторник': ['Вторник','Пятница'],
+    'Пятница': ['Вторник','Пятница']
+  };
+  function scheduleDays(d){
+    const pair = DAY_PAIR[d];
+    return pair ? pair.map(trDay).join('/') : trDay(d);
+  }
   function t(key){ return I18N[currentLang][key]; }
 
   // Совпадение по словам: каждое введённое слово должно точно совпасть с одним из слов
@@ -608,12 +621,12 @@
         <h3>${r.n}</h3>
         <div class="facts">
           <div>
-            <div class="fact-label">${t('factDay')}</div>
-            <div class="fact-value">${trDay(r.d)}</div>
+            <div class="fact-label">${t('factSchedule')}</div>
+            <div class="fact-value">${scheduleDays(r.d)} ${r.t}</div>
           </div>
           <div>
-            <div class="fact-label">${t('factTime')}</div>
-            <div class="fact-value">${r.t}</div>
+            <div class="fact-label">${t('factMainDay')}</div>
+            <div class="fact-value">${trDay(r.d)}</div>
           </div>
           <div>
             <div class="fact-label">${t('factCoach')}</div>
@@ -632,6 +645,7 @@
           ? `<div class="note warn">${t('noteWarn')}</div>`
           : (changed ? `<div class="note">${t('noteChanged')}</div>` : `<div class="note">${t('noteSame')}</div>`)
         }
+        <div class="note info">${t('noteWorkshop')}</div>
       `;
       results.appendChild(card);
     });
