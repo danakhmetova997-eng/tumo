@@ -644,10 +644,9 @@
   function renderFaq(){
     const list = document.getElementById('faqList');
     list.innerHTML = '';
-    t('faq').forEach((item, i) => {
+    t('faq').forEach((item) => {
       const det = document.createElement('details');
       det.className = 'faq-item';
-      if(i === 0) det.setAttribute('open','');
       const sum = document.createElement('summary');
       sum.textContent = item.q;
       const ans = document.createElement('div');
